@@ -9,10 +9,7 @@ floating_modifier $mod
 
 # Borders
 hide_edge_borders both
-smart_borders on
-gaps inner 0
-gaps outer 0
-#new_window none
+new_window pixel 0
 
 # Colours
 set $base00 #101218
@@ -132,8 +129,9 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Move to workspace on launch
 assign [class="Firefox"] $ws1
-assign [class="Termite"] $ws2
-assign [class="Thunar"] $ws3
+assign [class="code-oss"] $ws2
+assign [class="Termite"] $ws3
+assign [class="Thunar"] $ws4
 for_window [class="Spotify"] move to workspace $ws10
 
 # Reload the configuration file
@@ -180,6 +178,8 @@ client.urgent 		$base02 $base08    $base00 $base0F
 # Lock
 bindsym $mod+shift+x exec i3lock --color 475263
 
+bindsym $mod+shift+z exec i3lock --color 475263 && systemctl suspend
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -195,10 +195,11 @@ bindsym $mod+Prior exec playerctl next
 bindsym $mod+Next exec playerctl previous
 
 # Wallpaper
-exec_always feh --bg-scale $HOME/Pictures/wallpaper.jpg
+exec_always feh --bg-scale $HOME/Pictures/wave.jpg
 
 # Launch on boot
 exec firefox
+exec code
 exec termite
 exec thunar
 exec_always compton -f --dbus -b
